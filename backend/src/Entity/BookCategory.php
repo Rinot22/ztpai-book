@@ -8,16 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 class BookCategory
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
-    private int $id;
-
-    #[ORM\ManyToMany(targetEntity: Book::class, inversedBy: 'bookAuthors')]
+    #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $bookId;
+    private Book $book;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'bookAuthors')]
+    #[ORM\Id]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $categoryId;
+    public Category $category;
 
 }

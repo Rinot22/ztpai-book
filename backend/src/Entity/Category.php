@@ -6,7 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use phpDocumentor\Reflection\Types\Collection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
 #[ApiResource]
@@ -20,7 +20,7 @@ class Category
     #[ORM\Column(type: 'string')]
     private string $categoryName;
 
-    #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: BookCategory::class, mappedBy: 'category')]
     private Collection $books;
 
     public function __construct()

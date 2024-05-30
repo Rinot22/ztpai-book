@@ -8,11 +8,12 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[ORM\Table(name: 'book')]
 #[ApiResource]
-class Book
+class Book implements JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,13 +32,13 @@ class Book
     #[ORM\Column(type: 'date')]
     private DateTimeInterface $publicationDate;
 
-    #[ORM\ManyToMany(targetEntity: BookAuthor::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: BookAuthor::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
     public Collection $bookAuthors;
 
-    #[ORM\ManyToMany(targetEntity: BookCategory::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: BookCategory::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
     private Collection $categories;
 
-    #[ORM\ManyToMany(targetEntity: CartBook::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: CartBook::class, mappedBy: 'book', cascade: ['persist', 'remove'])]
     private Collection $carts;
 
     public function __construct()
@@ -123,4 +124,22 @@ class Book
     }
 
 
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'price' => $this->price,
+            'description' => $this->description,
+            'categories' => array_map(
+                static fn (BookCategory $bookCategory) =>
+                $bookCategory->category->getCategoryName(),
+                $this->categories->toArray()
+            ),
+            'authors' => array_map(
+                static fn (BookAuthor $bookAuthor) => $bookAuthor->author->getName(),
+                $this->bookAuthors->toArray()
+            )
+        ];
+    }
 }

@@ -7,10 +7,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: 'security_user')]
 #[ApiResource]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -26,15 +29,15 @@ class User
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'user')]
-    private Collection $roles;
+//    #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'user')]
+//    private Collection $roles;
 
-    #[ORM\OneToOne(targetEntity: Cart::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private int $cartId;
+//    #[ORM\OneToOne(targetEntity: Cart::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+//    private int $cartId;
 
     public function __construct()
     {
-        $this->roles = new ArrayCollection();
+       // $this->roles = new ArrayCollection();
     }
 
     public function getId(): int
@@ -77,6 +80,7 @@ class User
 
     public function getRoles(): array
     {
+        return [];
         $roles = $this->roles;
 
         $roles[] = 'USER';
@@ -97,4 +101,13 @@ class User
     }
 
 
+    public function eraseCredentials(): void
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
 }

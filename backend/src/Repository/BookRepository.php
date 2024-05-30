@@ -16,7 +16,7 @@ class BookRepository extends ServiceEntityRepository implements ObjectRepository
         parent::__construct($registry, Book::class);
     }
 
-    public function findByBookTitle(string $title): array
+    public function findByBookTitle(string $title): Book
     {
         $q = $this->getEntityManager()->createQueryBuilder()
             ->select('b')
@@ -28,7 +28,7 @@ class BookRepository extends ServiceEntityRepository implements ObjectRepository
         return $q->getResult();
     }
 
-    public function findById(int $id): array
+    public function findById(int $id): Book
     {
         $q = $this->getEntityManager()->createQueryBuilder()
             ->select('b')

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Service\BookService;
 use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -37,7 +38,8 @@ class BookController extends AbstractController
     #[Route(path: '/books', methods: ['GET'])]
     public function books(): Response
     {
-        $response = new Response($this->json($this->bs->getAllBooks()));
+//        dd(new JsonResponse($this->bs->getAllBooks()));
+        $response = new JsonResponse($this->bs->getAllBooks());
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }

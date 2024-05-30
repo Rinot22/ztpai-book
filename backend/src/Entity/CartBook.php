@@ -14,10 +14,10 @@ class CartBook
 
     #[ORM\ManyToOne(targetEntity: Cart::class, inversedBy: 'cartBook')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $cartId;
+    private int $cart;
 
     #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'cartBook')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $bookId;
+    private int $book;
 
 }

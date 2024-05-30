@@ -18,7 +18,7 @@ class Author
     private int $id;
 
     #[ORM\Column(type: 'string', length: 50)]
-    private string $firstName;
+    public string $firstName;
 
     #[ORM\Column(type: 'string', length: 50)]
     private string $secondName = '';
@@ -26,12 +26,24 @@ class Author
     #[ORM\Column(type: 'string', length: 50)]
     private string $surname;
 
-    #[ORM\ManyToMany(targetEntity: BookAuthor::class, mappedBy: 'author', cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(targetEntity: BookAuthor::class, mappedBy: 'author', cascade: ['persist', 'remove'])]
     private Collection $bookAuthor;
 
     public function __construct()
     {
-        $this->books = new ArrayCollection();
+        $this->booksAuthor = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return sprintf('%s %s', $this->firstName, $this->secondName);
+    }
 }
