@@ -20,7 +20,7 @@ export const Login = () => {
                             <input type="checkbox" id="rememberMe" />
                             <label htmlFor="rememberMe">Remember me</label>
                         </div>
-                        <a href="#">Forget Password?</a>
+                        <a href="/registration">Forget Password?</a>
                     </div>
                     <button type="submit">Login</button>
                 </form>

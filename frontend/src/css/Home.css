@@ -1,0 +1,47 @@
+/* src/HomePage.css */
+
+.homepage-container {
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .hero-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .hero-section h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .hero-section p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #777;
+  }
+  
+  .carousel-book, .all-books {
+    width: 100%;
+    height: auto;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+  }
+  

@@ -1,0 +1,80 @@
+/* src/ProductDetailPage.css */
+
+.product-detail-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 1200px;
+  }
+  
+  .breadcrumb {
+    color: #5a5a5a;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .product-title {
+    text-align: left;
+    color: #5a5a5a;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .product-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #5a5a5a;
+    margin-bottom: 20px;
+  }
+  
+  .quantity-input {
+    width: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .product-details {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .product-details li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #5a5a5a;
+  }
+  
+  .add-to-cart-btn {
+    background-color: #5a5a5a;
+    border-color: #5a5a5a;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .product-description {
+    font-size: 16px;
+    color: #5a5a5a;
+  }
+  
+  .similar-books {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .similar-book {
+    width: 200px;
+    height: auto;
+  }
+  

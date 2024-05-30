@@ -5,7 +5,7 @@ import { Header } from '../components/Header';
 
 export const Profile = () => {
   return (
-    <>
+    <div>
         <Header />
         <Container className="profile-container">
       <h1 className="profile-title">My Profile</h1>
@@ -108,6 +108,6 @@ export const Profile = () => {
         </Col>
       </Row>
     </Container>
-    </>
+    </div>
   );
 };
