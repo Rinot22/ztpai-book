@@ -7,8 +7,9 @@ use DateTimeInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectRepository;
 
-class BookRepository extends ServiceEntityRepository
+class BookRepository extends ServiceEntityRepository implements ObjectRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

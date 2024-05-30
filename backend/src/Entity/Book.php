@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
+#[ORM\Table(name: 'book')]
 #[ApiResource]
 class Book
 {
@@ -42,7 +43,7 @@ class Book
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->authors = new ArrayCollection();
+        $this->bookAuthors = new ArrayCollection();
     }
 
     public function getId(): int
@@ -111,12 +112,12 @@ class Book
 
     public function getAuthors(): Collection
     {
-        return $this->authors;
+        return $this->bookAuthors;
     }
 
     public function setAuthors(Collection $authors): self
     {
-        $this->authors = $authors;
+        $this->bookAuthors = $authors;
 
         return $this;
     }

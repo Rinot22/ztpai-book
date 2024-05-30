@@ -37,7 +37,9 @@ class BookController extends AbstractController
     #[Route(path: '/books', methods: ['GET'])]
     public function books(): Response
     {
-        return $this->json($this->bs->getAllBooks());
+        $response = new Response($this->json($this->bs->getAllBooks()));
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 
     #[Route(path: '/books', methods: ['POST'])]

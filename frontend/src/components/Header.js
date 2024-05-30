@@ -1,13 +1,12 @@
 import { Navbar, Nav, Form, FormControl, Container } from "react-bootstrap"
-import logo from '../images/logo.png';
-import '../css/components/Header.css'
+// import logo from '../images/logo.png';
+import '../css/components/Header.css';
 
 
 export const Header = () => (            
     <Navbar collapseOnSelect className='navbar' expand='md'>
         <Container>
             <Navbar.Brand href="/">
-                <img src={logo} alt='Logo' className='logo'/>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='responsive-navbar-nav'/>
             <Navbar.Collapse id='responsive-navbar-nav'>

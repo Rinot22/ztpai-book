@@ -1,0 +1,91 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+
+.registration-container {
+    display: flex;
+    height: 100vh;
+}
+
+.registration-form {
+    width: 40%; /* Adjust width as needed */
+    padding: 40px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto; /* Center the form horizontally */
+}
+
+.registration-form h2 {
+    font-size: 24px;
+    color: #a68b62;
+    margin-bottom: 10px;
+}
+
+.registration-form h1 {
+    font-size: 48px;
+    font-weight: bold;
+    color: #4d3628;
+    margin-bottom: 30px;
+}
+
+.registration-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #4d3628;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #a68b62;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8b724e;
+}
+
+.registration-form p {
+    margin-top: 20px;
+    color: #4d3628;
+}
+
+.registration-form p a {
+    color: #a68b62;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.registration-form p a:hover {
+    text-decoration: underline;
+}
+
+.registration-image {
+    width: 60%; /* Adjust width as needed */
+    background-size: cover;
+    background-position: center;
+}

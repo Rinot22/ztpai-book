@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import '../css/Cart.css';
+import { Header } from '../components/Header';
 
-const Cart = () => {
+export const Cart = () => {
   const [cart, setCart] = useState([
     { id: 1, name: "IPSUM CONSEQUAT NISL VEL", price: 47, quantity: 2 },
     { id: 2, name: "IPSUM CONSEQUAT NISL VEL", price: 47, quantity: 2 }
@@ -19,15 +20,17 @@ const Cart = () => {
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   return (
-    <Container>
-      <h1 className="text-center my-4">Shopping Cart</h1>
+    <>
+        <Header />
+        <Container className="shopping-cart-container">
+      <h1 className="shopping-cart-title">Shopping Cart</h1>
       {cart.map(item => (
-        <Row key={item.id} className="align-items-center mb-3">
+        <Row key={item.id} className="product-row align-items-center mb-3">
           <Col md={2}>
             <Image src="path/to/image.png" thumbnail />
           </Col>
           <Col md={4}>
-            <h5>{item.name}</h5>
+            <h5 className="product-name">{item.name}</h5>
           </Col>
           <Col md={2}>
             <Form.Control 
@@ -35,22 +38,23 @@ const Cart = () => {
               value={item.quantity} 
               onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))} 
               min="1" 
+              className="quantity-input"
             />
           </Col>
           <Col md={2}>
-            <h5>${item.price}</h5>
+            <h5 className="product-price">${item.price}</h5>
           </Col>
           <Col md={2}>
-            <h5>${item.price * item.quantity}</h5>
+            <h5 className="product-total">${item.price * item.quantity}</h5>
           </Col>
         </Row>
       ))}
       <Row>
-        <Col md={{ span: 4, offset: 8 }}>
+        <Col md={{ span: 4, offset: 8 }} className="total-row">
           <h3>Total: ${total}</h3>
         </Col>
       </Row>
-      <Row className="my-4">
+      <Row className="buttons-row">
         <Col md={6}>
           <Button variant="secondary" block>Continue Shopping</Button>
         </Col>
@@ -101,7 +105,6 @@ const Cart = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
-
-export default ShoppingCart;
