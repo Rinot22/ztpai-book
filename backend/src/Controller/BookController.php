@@ -17,46 +17,35 @@ class BookController extends AbstractController
     {
     }
 
-    #[Route(path: '/books/$title', methods: ['GET'])]
-    public function bookByTitle(string $title): Response
-    {
-            return $this->json($this->bs->getBookByTitle($title));
-    }
-
-    #[Route(path: '/category/{id}/books', methods: ['GET'])]
-    public function booksByCategoryId(int $id): Response
-    {
-        return $this->json($this->bs->getBooksByCategory($id));
-    }
-
-    #[Route(path: '/books/{id}')]
+    #[Route(path: '/api/books/{id}')]
     public function bookById(int $id): Response
     {
-        return $this->json($this->bs->getBookById($id));
+        $response = new JsonResponse($this->bs->getBookById($id));
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 
-    #[Route(path: '/books', methods: ['GET'])]
+    #[Route(path: '/api/books', methods: ['GET'])]
     public function books(): Response
     {
-//        dd(new JsonResponse($this->bs->getAllBooks()));
         $response = new JsonResponse($this->bs->getAllBooks());
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
     }
 
-    #[Route(path: '/books', methods: ['POST'])]
+    #[Route(path: '/api/books', methods: ['POST'])]
     public function add(): Response
     {
         return $this->json('add book');
     }
 
-    #[Route(path: '/books/{id}', methods: ['DELETE'])]
+    #[Route(path: '/api/books/{id}', methods: ['DELETE'])]
     public function delete(int $id): Response
     {
         return $this->json('delete book: '.$id);
     }
 
-    #[Route(path: '/books/{id}', methods: ['PATCH'])]
+    #[Route(path: '/api/books/{id}', methods: ['PATCH'])]
     public function patch(int $id): Response
     {
         return $this->json('update book: '.$id);

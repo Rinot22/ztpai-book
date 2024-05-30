@@ -44,6 +44,6 @@ class Author
 
     public function getName(): string
     {
-        return sprintf('%s %s', $this->firstName, $this->secondName);
+        return sprintf('%s %s %s', $this->firstName, $this->secondName, $this->surname);
     }
 }

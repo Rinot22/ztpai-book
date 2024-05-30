@@ -8,12 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 class CartUser
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\OneToOne(targetEntity: Cart::class, inversedBy: 'cartUser')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $cart;
 
-    private int $cartId;
-
-    private int $userId;
+    #[ORM\Id]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'cartUser')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $user;
 
 }

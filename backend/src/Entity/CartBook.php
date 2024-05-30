@@ -8,14 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 class CartBook
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
-
     #[ORM\ManyToOne(targetEntity: Cart::class, inversedBy: 'cartBook')]
     #[ORM\JoinColumn(nullable: false)]
     private int $cart;
 
+    #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'cartBook')]
     #[ORM\JoinColumn(nullable: false)]
     private int $book;

@@ -8,11 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 class UserRole
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private int $id;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userRole')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $user;
 
-    private int $userId;
-    private int $roleId;
+    #[ORM\Id]
+    #[ORM\ManyToOne(targetEntity: Role::class, inversedBy: 'userRole')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $role;
 
 }

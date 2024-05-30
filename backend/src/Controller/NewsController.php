@@ -8,25 +8,25 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class NewsController extends AbstractController
 {
-    #[Route(path: 'news/{id}', methods: ['GET'])]
+    #[Route(path: '/api/news/{id}', methods: ['GET'])]
     public function getNews(int $id): Response
     {
         return $this->json('news by id: '.$id);
     }
 
-    #[Route(path: '/news', methods: ['GET'])]
+    #[Route(path: '/api/news', methods: ['GET'])]
     public function getAllNews(): Response
     {
         return $this->json('all news');
     }
 
-    #[Route(path: '/news', methods: ['POST'])]
+    #[Route(path: '/api/news', methods: ['POST'])]
     public function addNews(): Response
     {
         return $this->json('');
     }
 
-    #[Route(path: '/news', methods: ['DELETE'])]
+    #[Route(path: '/api/news/{id}', methods: ['DELETE'])]
     public function deleteNews(int $id): Response
     {
         return $this->json('');

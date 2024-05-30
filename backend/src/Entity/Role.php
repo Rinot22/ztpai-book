@@ -18,8 +18,7 @@ class Role
     #[ORM\Column(type: 'string')]
     private string $role;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'role')]
-    #[ORM\JoinTable(name: 'role_user')]
+    #[ORM\OneToMany(targetEntity: UserRole::class, mappedBy: 'role', cascade: ['persist', 'remove'])]
     private Collection $users;
 
     public function __construct()
@@ -41,6 +40,4 @@ class Role
     {
         return $this->role;
     }
-
-
 }

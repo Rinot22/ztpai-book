@@ -7,6 +7,7 @@ use App\Repository\CartRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\DocBlock\Tag;
 
 #[ORM\Entity(repositoryClass: CartRepository::class)]
 #[ApiResource]
@@ -17,11 +18,11 @@ class Cart
     #[ORM\Column(type: 'integer')]
     private int $id;
 
-
-    private int $userId;
+    #[ORM\OneToOne(targetEntity: CartUser::class, mappedBy: 'cart', cascade: ['persist', 'remove'])]
+    private int $cartUser;
 
     #[ORM\OneToMany(targetEntity: CartBook::class, mappedBy: 'cart', cascade: ['persist', 'remove'])]
-    private Collection $books;
+    private Collection $cartBook;
 
     public function __construct()
     {

@@ -29,11 +29,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $password;
 
-//    #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'user')]
-//    private Collection $roles;
+    #[ORM\OneToMany(targetEntity: UserRole::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private Collection $roles;
 
-//    #[ORM\OneToOne(targetEntity: Cart::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
-//    private int $cartId;
+    #[ORM\OneToOne(targetEntity: Cart::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private int $cartUser;
 
     public function __construct()
     {
@@ -90,12 +90,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCartId(): int
     {
-        return $this->cartId;
+        return $this->cartUser;
     }
 
-    public function setCartId(int $cartId): self
+    public function setCartId(int $cart): self
     {
-        $this->cartId = $cartId;
+        $this->cartUser = $cart;
 
         return $this;
     }

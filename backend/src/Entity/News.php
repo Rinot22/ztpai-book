@@ -23,7 +23,7 @@ class News
     #[ORM\Column(type: 'string', length: 255)]
     private string $description;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'text')]
     private string $content;
 
     #[ORM\Column(type: 'date')]

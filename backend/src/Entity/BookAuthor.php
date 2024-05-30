@@ -7,11 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 class BookAuthor
 {
-//    #[ORM\Id]
-//    #[ORM\Column(type: 'integer')]
-//    #[ORM\GeneratedValue]
-//    private int $id;
-
     #[ORM\Id]
     #[ORM\ManyToOne(targetEntity: Book::class, inversedBy: 'bookAuthors')]
     #[ORM\JoinColumn(nullable: false)]
