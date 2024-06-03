@@ -16,14 +16,6 @@ class AuthorController extends AbstractController
     {
     }
 
-    #[Route(path: '/api/books/{id}')]
-    public function bookById(int $id): Response
-    {
-        $response = new JsonResponse($this->as->getAuthorById($id));
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-        return $response;
-    }
-
     #[Route(path: '/api/books', methods: ['GET'])]
     public function books(): Response
     {

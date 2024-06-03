@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Image, Card } from 'react-bootstrap';
 import '../css/Shop.css';
 import { Header } from '../components/Header';
-import bookimg from '../images/book_cover.jpg'
+import bookcov from '../images/book_cover.jpg'
 
 export const Shop = () => {
   const [books, setBooks] = useState([]);
@@ -58,8 +58,7 @@ export const Shop = () => {
         }
 
         const data = await response.json();
-        setCategories(data['hydra:member']);
-        console.log(categories); // Извлечение категорий из 'hydra:member'
+        setCategories(data['hydra:member']); // Извлечение категорий из 'hydra:member'
       } catch (error) {
         setError(error.message);
       }
@@ -84,8 +83,6 @@ export const Shop = () => {
 
   const sortBooks = (books) => {
     switch (sortOption) {
-      case 'latest':
-        return books.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate));
       case 'priceLowToHigh':
         return books.sort((a, b) => a.price - b.price);
       case 'priceHighToLow':
@@ -129,7 +126,7 @@ export const Shop = () => {
               <Form.Check
                 key={category.id}
                 type="checkbox"
-                label={category.categoryName}
+                label={category.categoryName} // Убедитесь, что API возвращает поле categoryName для категории
                 value={category.id}
                 onChange={handleCategoryChange}
               />
@@ -140,9 +137,10 @@ export const Shop = () => {
               {sortedBooks.map((book, index) => (
                 <Col md={4} key={index} className="mb-4">
                   <Card className="book-card">
-                    <Card.Img variant="top" src={bookimg} className="shop-book" />
+                    <Card.Img variant="top" src={bookcov} className="shop-book" />
                     <Card.Body>
                       <Card.Title>{book.title}</Card.Title>
+                      <Card.Text>{book.description}</Card.Text>
                       <Card.Text><strong>Price:</strong> ${book.price}</Card.Text>
                       <Card.Text><strong>Authors:</strong> {book.authors.map(a => a.author.name).join(', ')}</Card.Text>
                       <Card.Text><strong>Categories:</strong> {book.categories.map(c => c.category.categoryName).join(', ')}</Card.Text>
@@ -152,6 +150,8 @@ export const Shop = () => {
               ))}
             </Row>
           </Col>
+        </Row>
+        <Row className="mt-4">
         </Row>
       </Container>
     </div>

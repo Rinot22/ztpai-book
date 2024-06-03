@@ -13,11 +13,6 @@ class AuthorService
     {
     }
     
-    public function getAuthorById(int $id): Author
-    {
-        return $this->ar->find($id);
-    }
-    
     public function getAuthors(): array
     {
         return $this->ar->findAllAuthors();
