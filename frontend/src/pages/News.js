@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/News.css';
 import { Header } from '../components/Header';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const News = () => {
   const [newsList, setNewsList] = useState([]);
@@ -39,7 +40,7 @@ export const News = () => {
   }
 
   if (!newsList.length) {
-    return <p style={{ textAlign: 'center' }}>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   return (

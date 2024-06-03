@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../css/Authors.css';
 import authorimg from '../images/author.webp'
 import { Header } from '../components/Header';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Authors = () => {
   const [authors, setAuthors] = useState([]);
@@ -39,7 +40,7 @@ export const Authors = () => {
   }
 
   if (!authors.length) {
-    return <p style={{ textAlign: 'center' }}>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   return (

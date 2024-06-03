@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import '../css/SingleNews.css';
 import { Header } from '../components/Header';
 import book from '../images/book.png'
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const SingleNews = () => {
   const { id } = useParams();
@@ -40,7 +41,7 @@ export const SingleNews = () => {
   }
 
   if (!news) {
-    return <p style={{ textAlign: 'center' }}>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   const formatDate = (dateString) => {

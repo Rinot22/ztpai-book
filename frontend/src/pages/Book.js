@@ -3,7 +3,8 @@ import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import '../css/Book.css';
 import { Header } from '../components/Header';
 import { useParams } from 'react-router';
-import book from '../images/book.png';
+import bookcov from '../images/book_cover.jpg';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const Book = () => {
   const {id} = useParams();
@@ -37,7 +38,7 @@ export const Book = () => {
   }, [id]);
 
   if(!book) {
-    return <p>Loading</p>
+    return <LoadingSpinner />;
   }
 
   return (
@@ -47,34 +48,18 @@ export const Book = () => {
       <h1 className="book-title">{book.title}</h1>
         <Row>
           <Col md={6}>
-            <img src={book} className="book-image" />
+            <img src={bookcov} className="book-image" />
           </Col>
           <Col md={6}>
             <div className="book-price">${book.price.toFixed(2)}</div>
             <Form.Control type="number" defaultValue={1} min="1" className="quantity-input" />
             <ul className="book-details">
-              <li><strong>Genre:</strong> {book.categories.map(c => c.category.categoryName).join(', ')}</li>
-              <li><strong>Author:</strong> {book.bookAuthors.map(ba => ba.author.name).join(', ')}</li>
-              <li><strong>Publication Date:</strong> {new Date(book.publicationDate).toLocaleDateString()}</li>
+              <p><strong>Genre:</strong> {book.categories.map(c => c.category.categoryName).join(', ')}</p>
+              <p><strong>Author:</strong> {book.bookAuthors.map(ba => ba.author.name).join(', ')}</p>
+              <p><strong>Publication Date:</strong> {new Date(book.publicationDate).toLocaleDateString()}</p>
+              <p><strong>Description:</strong> {book.description}</p>
             </ul>
             <Button variant="primary" className="add-to-cart-btn">Add to Cart</Button>
-          </Col>
-        </Row>
-        <Row className="mt-4">
-          <Col>
-            <p className="book-description">
-              {book.description}
-            </p>
-          </Col>
-        </Row>
-        <Row className="mt-4">
-          <Col>
-            <h2>Similar Books</h2>
-            <div className="similar-books">
-              <Image src="path/to/book-image.png" thumbnail className="similar-book" />
-              <Image src="path/to/book-image.png" thumbnail className="similar-book" />
-              <Image src="path/to/book-image.png" thumbnail className="similar-book" />
-            </div>
           </Col>
         </Row>
     </Container>

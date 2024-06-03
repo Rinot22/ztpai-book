@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Image, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Card } from 'react-bootstrap';
 import '../css/Shop.css';
 import { Header } from '../components/Header';
 import bookcov from '../images/book_cover.jpg'
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import { Link } from 'react-router-dom';
 
 export const Shop = () => {
   const [books, setBooks] = useState([]);
@@ -32,7 +34,7 @@ export const Shop = () => {
         }
 
         const data = await response.json();
-        setBooks(data['hydra:member']); // Извлечение книг из 'hydra:member'
+        setBooks(data['hydra:member']);
       } catch (error) {
         setError(error.message);
       }
@@ -105,7 +107,7 @@ export const Shop = () => {
   }
 
   if (!books.length) {
-    return <p style={{ textAlign: 'center' }}>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -126,7 +128,7 @@ export const Shop = () => {
               <Form.Check
                 key={category.id}
                 type="checkbox"
-                label={category.categoryName} // Убедитесь, что API возвращает поле categoryName для категории
+                label={category.categoryName}
                 value={category.id}
                 onChange={handleCategoryChange}
               />
@@ -136,6 +138,7 @@ export const Shop = () => {
             <Row>
               {sortedBooks.map((book, index) => (
                 <Col md={4} key={index} className="mb-4">
+                  <Link to={`/books/${book.id}`}>
                   <Card className="book-card">
                     <Card.Img variant="top" src={bookcov} className="shop-book" />
                     <Card.Body>
@@ -146,6 +149,7 @@ export const Shop = () => {
                       <Card.Text><strong>Categories:</strong> {book.categories.map(c => c.category.categoryName).join(', ')}</Card.Text>
                     </Card.Body>
                   </Card>
+                  </Link>
                 </Col>
               ))}
             </Row>
