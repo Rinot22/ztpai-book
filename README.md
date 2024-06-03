@@ -17,9 +17,11 @@ This project uses the following technologies:
 
 
 ## DB diagram
-![Uploading db_view.svg…](images/ERD.png)
+(images/ERD.png)
 
 
 ## App pages views
-![Uploading db_view.svg…](images/login.png)
-
+(images/login.png)
+(image/register.png)
+(image/shop.png)
+(image/news.png)
