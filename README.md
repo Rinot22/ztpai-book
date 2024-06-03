@@ -17,11 +17,14 @@ This project uses the following technologies:
 
 
 ## DB diagram
-(images/ERD.png)
+![ERD](./images/ERD.png)
 
 
 ## App pages views
-(images/login.png)
-(image/register.png)
-(image/shop.png)
-(image/news.png)
+![Login Page](./images/login.png)
+
+![Registation Page](./image/register.png)
+
+![Shop Page](./image/shop.png)
+
+![News Page](./image/news.png)
