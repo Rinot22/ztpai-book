@@ -1,18 +1,6 @@
-import {React, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../css/Author.css';
-import { Header } from '../components/Header';
-
-const author = {
-    name: 'John Doe',
-    biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus. Donec bibendum purus eu nisi consequat, non facilisis justo viverra.',
-    image: 'path/to/author-image.png',
-    books: [
-      { title: 'Book 1', cover: 'path/to/book-cover1.png' },
-      { title: 'Book 2', cover: 'path/to/book-cover2.png' },
-      { title: 'Book 3', cover: 'path/to/book-cover3.png' },
-    ],
-  };
+import '../css/Author.css'; // Подключение стилей
 
 export const Author = () => {
   const { id } = useParams(); // Получение ID автора из URL
@@ -23,6 +11,10 @@ export const Author = () => {
     const fetchAuthorDetail = async () => {
       try {
         const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('No token found');
+        }
+
         const response = await fetch(`http://localhost:8000/api/authors/${id}`, {
           method: 'GET',
           headers: {
@@ -53,40 +45,32 @@ export const Author = () => {
     return <p style={{ textAlign: 'center' }}>Loading...</p>;
   }
 
-
-    return (
-        <div>
-          <Header />
-          <div className="author-detail-container">
-            <h1 className="author-name">{author.name}</h1>
-            <div className="author-content">
-              <img src={`path/to/${author.image}`} alt={author.name} className="author-image" />
-              <div className="author-details">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td><strong>Name</strong></td>
-                      <td>{author.name}</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Biography</strong></td>
-                      <td>{author.biography}</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Published Books</strong></td>
-                      <td>
-                        <ul>
-                          {author.books.map(book => (
-                          <li key={book.id}>{book.title}</li>
-                          ))}
-                        </ul>
-                      </td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+  return (
+    <div className="author-detail-container">
+      <h1 className="author-name">{author.name}</h1>
+      <div className="author-content">
+        <img src={author.image} alt={author.name} className="author-image" />
+        <div className="author-details">
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>{author.name}</td>
+              </tr>
+              <tr>
+                <td><strong>Published Books</strong></td>
+                <td>
+                  <ul>
+                    {author.books.map(book => (
+                      <li key={book.id}>{book.title}</li>
+                    ))}
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    );
-}
+    </div>
+  );
+};

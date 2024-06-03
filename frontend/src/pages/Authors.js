@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/Authors.css'; // Создайте и стилизуйте этот файл по вашему усмотрению
-import { Header } from '../components/Header';
+import '../css/Authors.css'; // Подключение стилей
 
 export const Authors = () => {
   const [authors, setAuthors] = useState([]);
@@ -11,7 +10,7 @@ export const Authors = () => {
     const fetchAuthors = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:8000/api/authors', {
+        const response = await fetch('http://127.0.0.1:8000/api/authors', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -42,21 +41,18 @@ export const Authors = () => {
   }
 
   return (
-    <div>
-        <Header />
-        <div className="author-list-container">
-      <h1 className="author-list-title">All Authors</h1>
-      <ul className="author-list">
+    <div className="authors-container">
+      <h1 className="authors-title">All Authors</h1>
+      <ul className="authors-list">
         {authors.map(author => (
-          <li key={author.id} className="author-list-item">
+          <li key={author.id} className="authors-list-item">
             <Link to={`/authors/${author.id}`}>
-              <img src={`path/to/${author.image}`} alt={author.name} className="author-list-image" />
+              <img src={`path/to/${author.image}`} alt={author.name} className="authors-list-image" />
               <p>{author.name}</p>
             </Link>
           </li>
         ))}
       </ul>
-    </div>
     </div>
   );
 };
