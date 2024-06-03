@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../css/Author.css'; // Подключение стилей
+import '../css/Author.css';
+import authorimg from '../images/author.webp'
+import { Header } from '../components/Header';
 
 export const Author = () => {
   const { id } = useParams(); // Получение ID автора из URL
@@ -46,10 +48,12 @@ export const Author = () => {
   }
 
   return (
-    <div className="author-detail-container">
+    <div>
+      <Header />
+      <div className="author-detail-container">
       <h1 className="author-name">{author.name}</h1>
       <div className="author-content">
-        <img src={author.image} alt={author.name} className="author-image" />
+        <img src={authorimg} alt={author.name} className="author-image" />
         <div className="author-details">
           <table>
             <tbody>
@@ -61,9 +65,6 @@ export const Author = () => {
                 <td><strong>Published Books</strong></td>
                 <td>
                   <ul>
-                    {author.books.map(book => (
-                      <li key={book.id}>{book.title}</li>
-                    ))}
                   </ul>
                 </td>
               </tr>
@@ -71,6 +72,7 @@ export const Author = () => {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -1,6 +1,4 @@
-/* src/css/NewsDetail.css */
-
-.news-detail-container {
+.author-detail-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -9,49 +7,35 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.news-title {
+.author-name {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-.news-content {
+.author-content {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
 
-.news-image {
+.author-image {
   flex: 1;
   max-width: 300px;
   margin-right: 20px;
   border-radius: 8px;
 }
 
-.news-details {
+.author-details {
   flex: 2;
 }
 
-.news-details table {
+.author-details table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.news-details table td {
+.author-details table td {
   padding: 8px;
   border: 1px solid #ddd;
-}
-
-.news-body {
-  margin-top: 20px;
-}
-
-.news-body h2 {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.news-body p {
-  color: #666;
-  line-height: 1.6;
 }

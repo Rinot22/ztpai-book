@@ -24,4 +24,20 @@ class AuthorRepository extends ServiceEntityRepository implements ObjectReposito
 
         return $q->getResult();
     }
+
+    public function findById(int $id): Author
+    {
+        $q = $this->getEntityManager()->createQueryBuilder()
+            ->select('a')
+            ->from('App\Entity\Author', 'a')
+            ->innerJoin('BookAuthor', 'ba')
+            ->where('a.id = ba.author_id')
+            ->innerJoin('Book', 'b')
+            ->where('b.id = ba.book_id')
+            ->where('a.id = :id')
+            ->setParameter('id', '$id')
+            ->getQuery();
+
+        return $q->getResult();
+    }
 }

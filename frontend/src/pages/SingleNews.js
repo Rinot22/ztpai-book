@@ -54,7 +54,6 @@ export const SingleNews = () => {
         <div className="news-detail-container">
       <h1 className="news-title">{news.title}</h1>
       <div className="news-content">
-        <img src={book} alt={news.title} className="news-image" />
         <div className="news-details">
           <table>
             <tbody>

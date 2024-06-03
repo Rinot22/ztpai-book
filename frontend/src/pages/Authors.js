@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/Authors.css'; // Подключение стилей
+import '../css/Authors.css';
+import authorimg from '../images/author.webp'
+import { Header } from '../components/Header';
 
 export const Authors = () => {
   const [authors, setAuthors] = useState([]);
@@ -23,7 +25,7 @@ export const Authors = () => {
         }
 
         const data = await response.json();
-        setAuthors(data);
+        setAuthors(data['hydra:member']);
       } catch (error) {
         setError(error.message);
       }
@@ -41,18 +43,22 @@ export const Authors = () => {
   }
 
   return (
-    <div className="authors-container">
-      <h1 className="authors-title">All Authors</h1>
-      <ul className="authors-list">
-        {authors.map(author => (
-          <li key={author.id} className="authors-list-item">
-            <Link to={`/authors/${author.id}`}>
-              <img src={`path/to/${author.image}`} alt={author.name} className="authors-list-image" />
-              <p>{author.name}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div>
+      <Header />
+      <div className="authors-list-container">
+        <h1 className="authors-list-title">All Authors</h1>
+        <div className="authors-list">
+          {authors.map(author => (
+            <div key={author.id} className="author-card">
+              <img src={authorimg} alt={author.name} className="author-image" />
+              <div className="author-content">
+                <h2 className="author-name">{author.name}</h2>
+                <Link to={`/authors/${author.id}`} className="author-read-more">Read More</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -11,6 +11,7 @@ export const News = () => {
     const fetchNewsList = async () => {
       try {
         const token = localStorage.getItem('token');
+
         const response = await fetch('http://localhost:8000/api/news', {
           method: 'GET',
           headers: {
@@ -24,7 +25,7 @@ export const News = () => {
         }
 
         const data = await response.json();
-        setNewsList(data);
+        setNewsList(data['hydra:member']);
       } catch (error) {
         setError(error.message);
       }
@@ -49,12 +50,10 @@ export const News = () => {
         <div className="news-list">
           {newsList.map(news => (
             <div key={news.id} className="news-card">
-              <img src={news.image} alt={news.title} className="news-image" />
               <div className="news-content">
                 <h2 className="news-title">{news.title}</h2>
                 <p className="news-description">{news.description}</p>
                 <Link to={`/news/${news.id}`} className="news-read-more">Read More</Link>
-                <p className="news-date">{new Date(news.date).toLocaleDateString()}</p>
               </div>
             </div>
           ))}
