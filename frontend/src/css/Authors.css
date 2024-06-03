@@ -1,54 +1,47 @@
-/* src/AuthorPage.css */
-
-.author-container {
+.author-list-container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
     background-color: #f8f8f8;
-  }
-  
-  .author-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-bottom: 20px;
-  }
-  
-  .author-container h1 {
-    font-size: 32px;
-    color: #5a5a5a;
-    margin-bottom: 20px;
-  }
-  
-  .author-container p {
-    font-size: 16px;
-    color: #5a5a5a;
-    margin-bottom: 40px;
-  }
-  
-  .book-card {
-    background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .book-cover {
-    height: 200px;
-    object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+  .author-list-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
   }
   
-  .book-card .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #5a5a5a;
+  .author-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
   }
   
-  .book-card .btn-primary {
-    background-color: #5a5a5a;
-    border-color: #5a5a5a;
-    border-radius: 4px;
-    padding: 10px 20px;
+  .author-list-item {
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    text-align: center;
+  }
+  
+  .author-list-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .author-list-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .author-list-item p {
+    margin-top: 10px;
     font-size: 16px;
-    font-weight: bold;
+    color: #666;
   }
   

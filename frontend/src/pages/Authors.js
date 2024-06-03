@@ -1,60 +1,62 @@
-import React from 'react';
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
-import '../css/Authors.css';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../css/Authors.css'; // Создайте и стилизуйте этот файл по вашему усмотрению
 import { Header } from '../components/Header';
-import { useQuery } from "@tanstack/react-query";
-import { Fragment } from 'react';
-
-const author = {
-    name: 'John Doe',
-    biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio et faucibus. Donec bibendum purus eu nisi consequat, non facilisis justo viverra.',
-    image: 'path/to/author-image.png',
-    books: [
-      { title: 'Book 1', cover: 'path/to/book-cover1.png' },
-      { title: 'Book 2', cover: 'path/to/book-cover2.png' },
-      { title: 'Book 3', cover: 'path/to/book-cover3.png' },
-    ],
-  };
 
 export const Authors = () => {
-    const {data, isLoading} = useQuery({ queryKey: ['authors'], queryFn: () => fetch("http://127.0.0.1:8000/api/books") })
+  const [authors, setAuthors] = useState([]);
+  const [error, setError] = useState('');
 
+  useEffect(() => {
+    const fetchAuthors = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('http://localhost:8000/api/authors', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
-    console.log(data)
-    // 
-    return (
-        <div>
-            <Header />
-            {!isLoading && data.map((item, index) => {
-                return <Fragment key={index}>
-                    {JSON.stringify(item)}
-                </Fragment>
-            })}
-            {/* <Container fluid className="author-container"> */}
-      {/* <Row className="align-items-center mb-4">
-        <Col md={4} className="text-center">
-          <Image src={author.image} roundedCircle className="author-image" />
-        </Col>
-        <Col md={8}>
-          <h1>{author.name}</h1>
-          <p>{author.biography}</p>
-        </Col>
-      </Row>
-      <h2 className="mb-4">Books by {author.name}</h2>
-      <Row>
-        {author.books.map((book, index) => (
-          <Col md={4} key={index} className="mb-4">
-            <Card className="book-card">
-              <Card.Img variant="top" src={book.cover} className="book-cover" />
-              <Card.Body>
-                <Card.Title>{book.title}</Card.Title>
-                <Button variant="primary">View Details</Button>
-              </Card.Body>
-            </Card>
-          </Col>
+        if (!response.ok) {
+          throw new Error('Failed to fetch authors');
+        }
+
+        const data = await response.json();
+        setAuthors(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchAuthors();
+  }, []);
+
+  if (error) {
+    return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
+  }
+
+  if (!authors.length) {
+    return <p style={{ textAlign: 'center' }}>Loading...</p>;
+  }
+
+  return (
+    <div>
+        <Header />
+        <div className="author-list-container">
+      <h1 className="author-list-title">All Authors</h1>
+      <ul className="author-list">
+        {authors.map(author => (
+          <li key={author.id} className="author-list-item">
+            <Link to={`/authors/${author.id}`}>
+              <img src={`path/to/${author.image}`} alt={author.name} className="author-list-image" />
+              <p>{author.name}</p>
+            </Link>
+          </li>
         ))}
-      </Row>
-    </Container> */}
-        </div>
-    );
-}
+      </ul>
+    </div>
+    </div>
+  );
+};

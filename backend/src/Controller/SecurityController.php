@@ -34,10 +34,18 @@ final class SecurityController extends AbstractController
 
         $user = (new User())->setEmail($request->email)->setUserName($request->username);
         $user->setPassword($passwordHasher->hashPassword($user, $request->password));
-//        dd($user);
         $userRepository->save($user);
         $token = $jwtManager->create($user);
 
         return new JsonResponse(['token' => $token], Response::HTTP_CREATED);
+    }
+
+
+     #[Route("/api/login_check", name: 'api_login_check', methods: ['POST'])]
+    public function login(User $user, JWTTokenManagerInterface $JWTManager)
+    {
+        $token = $JWTManager->create($user);
+
+        return new JsonResponse(['token' => $token]);
     }
 }
