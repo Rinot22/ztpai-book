@@ -23,8 +23,8 @@ This project uses the following technologies:
 ## App pages views
 ![Login Page](./images/login.png)
 
-![Registation Page](./image/register.png)
+![Registation Page](./images/register.png)
 
-![Shop Page](./image/shop.png)
+![Shop Page](./images/shop.png)
 
-![News Page](./image/news.png)
+![News Page](./images/news.png)
