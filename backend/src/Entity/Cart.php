@@ -26,7 +26,7 @@ class Cart
 
     public function __construct()
     {
-        $this->books = new ArrayCollection();
+        $this->cartBook = new ArrayCollection();
     }
 
 
@@ -37,24 +37,24 @@ class Cart
 
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->cartUser;
     }
 
     public function setUserId(int $userId): self
     {
-        $this->userId = $userId;
+        $this->cartUser = $userId;
 
         return $this;
     }
 
     public function getBooks(): Collection
     {
-        return $this->books;
+        return $this->cartBook;
     }
 
     public function setBooks(Collection $books): self
     {
-        $this->books = $books;
+        $this->cartBook = $books;
 
         return $this;
     }

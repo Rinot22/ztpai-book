@@ -13,7 +13,7 @@ use JsonSerializable;
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[ORM\Table(name: 'book')]
 #[ApiResource]
-class Book implements JsonSerializable
+class Book /*implements JsonSerializable*/
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -124,7 +124,7 @@ class Book implements JsonSerializable
     }
 
 
-    public function jsonSerialize(): array
+    /*public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
@@ -141,5 +141,5 @@ class Book implements JsonSerializable
                 $this->bookAuthors->toArray()
             )
         ];
-    }
+    }*/
 }

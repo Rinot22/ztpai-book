@@ -23,22 +23,6 @@ export const Home = () => {
       <CarouselSection title="New arrivals" books={["book1.png", "book2.png", "book3.png", "book4.png"]} />
       <CarouselSection title="Bestsellers" books={["book5.png", "book6.png", "book7.png", "book8.png"]} />
       <CarouselSection title="Pre-orders" books={["book9.png", "book10.png", "book11.png", "book12.png"]} />
-      
-      <Row className="mt-4">
-        <Col>
-          <h2>All books</h2>
-          <Row>
-            {[...Array(12).keys()].map((_, index) => (
-              <Col md={3} key={index} className="mb-4">
-                <Image src={`path/to/book${index + 1}.png`} thumbnail className="all-books" />
-              </Col>
-            ))}
-          </Row>
-          <div className="text-center">
-            <Button variant="primary">Load more</Button>
-          </div>
-        </Col>
-      </Row>
     </Container>
     </div>
   );
