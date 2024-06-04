@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Author;
-use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectRepository;

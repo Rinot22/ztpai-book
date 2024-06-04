@@ -10,11 +10,11 @@ class CartUser
     #[ORM\Id]
     #[ORM\OneToOne(targetEntity: Cart::class, inversedBy: 'cartUser')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $cart;
+    private Cart $cart;
 
     #[ORM\Id]
     #[ORM\OneToOne(targetEntity: User::class, inversedBy: 'cartUser')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $user;
+    private User $user;
 
 }

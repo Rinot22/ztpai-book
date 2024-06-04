@@ -80,7 +80,7 @@ export const Registration = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Register</button>
+                    <button type="submit"><a href='/'>Register</a></button>
                 </form>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <p>Already have an account? <a href="/login">Login</a></p>

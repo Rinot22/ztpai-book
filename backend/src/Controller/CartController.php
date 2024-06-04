@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,15 +10,17 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CartController extends AbstractController
 {
-    #[Route(path: "/api/carts", methods: ['POST'])]
-    public function createCart(): Response
+
+
+    public function __construct(private CartService $cs)
     {
-        return new JsonResponse();
     }
 
-    #[Route(path: "/api/carts/{id}", methods: ['GET'])]
-    public function getCart(int $userId, int $id): Response
+    #[Route(path: "/api/cart", methods: ['GET'])]
+    public function getCart(): Response
     {
-        return $this->json('it\'s a cart of user with id:'.$userId.' by id: '.$id);
+        $response = new JsonResponse($this->cs->getCart($this->getUser()->getId()));
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 }

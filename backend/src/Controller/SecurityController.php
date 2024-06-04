@@ -41,11 +41,27 @@ final class SecurityController extends AbstractController
     }
 
 
-     #[Route("/api/login_check", name: 'api_login_check', methods: ['POST'])]
+    #[Route("/api/login_check", name: 'api_login_check', methods: ['POST'])]
     public function login(User $user, JWTTokenManagerInterface $JWTManager)
     {
         $token = $JWTManager->create($user);
 
         return new JsonResponse(['token' => $token]);
+    }
+
+    #[Route(path: '/api/user', methods: ['GET'])]
+    public function getCurrentUser(): Response
+    {
+        $user = $this->getUser();
+
+        if (!$user)
+        {
+            return new JsonResponse(['error' => 'user not authenticated']);
+        }
+
+        return new JsonResponse([
+            'id' => $user->getId(),
+            'email' => $user->getEmail()
+        ]);
     }
 }
